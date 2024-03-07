@@ -26,6 +26,11 @@ class UDP_Server:
     def send_message(self):
         while True:
             message = input("You: ") # Enter a message
+            if message == "!q": # vim-style quit command
+                self.socket.sendto("!q".encode(), (self.server_ip, self.server_port))
+                print("Server shutting down...")
+                self.socket.close()
+                break
             self.socket.sendto(message.encode(), (self.server_ip, self.server_port))
 
     # Method to start the threads
@@ -37,10 +42,9 @@ class UDP_Server:
         send.start()
 
 
-hostname = socket.gethostname()
-ip_address = socket.gethostbyname(hostname)
+ip_address = socket.gethostbyname(socket.gethostname())
 
-if __name__ == "__main__":
-    server = UDP_Server("127.0.0.1", 5000)
+if __name__ == "__server_protocol__":
+    server = UDP_Server(ip_address, 5000)
     server.create_socket()
     server.start_threads()

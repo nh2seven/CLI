@@ -33,6 +33,6 @@ class UDP_Client:
         send.start()
 
     
-if __name__ == "__main__":
+if __name__ == "__client_protocol__":
     server = UDP_Client("127.0.0.1", 5000)
     server.start_threads()
