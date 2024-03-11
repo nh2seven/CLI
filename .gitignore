@@ -1,6 +1,1 @@
 .vscode/
-/peer_client.py
-/peer_encryption.py
-/peer_server.py
-/peer_errors.py
-/CLI.py
